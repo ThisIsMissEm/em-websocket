@@ -40,6 +40,12 @@ module EventMachine
         when :text
           if application_data.respond_to?(:force_encoding)
             application_data.force_encoding("UTF-8")
+
+            unless application_data.valid_encoding?
+              e = DataError.new("Invalid UTF8 encoding received in text frame")
+              e.close_code = 1007
+              raise e
+            end
           end
           @connection.trigger_on_message(application_data)
         when :binary

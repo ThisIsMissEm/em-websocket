@@ -2,7 +2,9 @@ module EventMachine
   module WebSocket
     class WebSocketError < RuntimeError; end
     class HandshakeError < WebSocketError; end
-    class DataError < WebSocketError; end
+    class DataError < WebSocketError
+      attr_accessor :close_code
+    end
 
     def self.start(options, &blk)
       EM.epoll

@@ -67,6 +67,12 @@ module EventMachine
         trigger_on_error(e)
         # Errors during the handshake require the connection to be aborted
         abort
+      rescue DataError => e
+        debug [:error, e]
+        trigger_on_error(e)
+
+        code = e.close_code || 1002
+        close_websocket_private(code)
       rescue WebSocketError => e
         debug [:error, e]
         trigger_on_error(e)

@@ -49,7 +49,8 @@ describe "draft13" do
 
   it "should send back the correct handshake response" do
     em {
-      EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 12345) { }
+      #EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 12345) { }
+      start_server { }
 
       # Create a fake client which sends draft 07 handshake
       # connection = EM.connect('0.0.0.0', 12345, Draft07FakeWebSocketClient)

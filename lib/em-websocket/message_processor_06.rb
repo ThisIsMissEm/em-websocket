@@ -1,6 +1,10 @@
 module EventMachine
   module WebSocket
     module MessageProcessor06
+      def invalid_encoding_error_code
+        1003
+      end
+
       def message(message_type, extension_data, application_data)
         debug [:message_received, message_type, application_data]
         
@@ -43,7 +47,7 @@ module EventMachine
 
             unless application_data.valid_encoding?
               e = DataError.new("Invalid UTF8 encoding received in text frame")
-              e.close_code = 1007
+              e.close_code = invalid_encoding_error_code()
               raise e
             end
           end

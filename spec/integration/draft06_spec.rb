@@ -1,4 +1,7 @@
+# encoding: UTF-8
+
 require 'helper'
+require 'integration/shared_examples'
 
 describe "draft06" do
   include EM::SpecHelper

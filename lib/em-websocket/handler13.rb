@@ -3,7 +3,7 @@ module EventMachine
     class Handler13 < Handler
       include Handshake04
       include Framing07
-      include MessageProcessor06
+      include MessageProcessor13
       include Close06
     end
   end
